@@ -1,0 +1,97 @@
+package main;
+
+import model.Book;
+import service.LibraryService;
+import util.LibraryException;
+
+import javax.swing.*;
+import java.awt.*;
+
+public class MainGUI {
+
+    private LibraryService library = new LibraryService();
+
+    public MainGUI() {
+
+        JFrame frame = new JFrame("Library System");
+        frame.setSize(400, 400);
+        frame.setLayout(new GridLayout(6, 1));
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        JButton add = new JButton("Add Book");
+        JButton view = new JButton("View Books");
+        JButton issue = new JButton("Issue Book");
+        JButton ret = new JButton("Return Book");
+        JButton remove = new JButton("Remove Book");
+
+        frame.add(add);
+        frame.add(view);
+        frame.add(issue);
+        frame.add(ret);
+        frame.add(remove);
+
+
+        add.addActionListener(e -> {
+            String id = JOptionPane.showInputDialog("Enter ID:");
+            String title = JOptionPane.showInputDialog("Enter Title:");
+            String author = JOptionPane.showInputDialog("Enter Author:");
+
+            try {
+                library.addBook(new Book(Integer.parseInt(id), title, author));
+                JOptionPane.showMessageDialog(frame, "Book Added");
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(frame, "Invalid Input");
+            }
+        });
+
+
+        view.addActionListener(e -> {
+            String data = "";
+            for (Book b : library.getBooks()) {
+                data += b.getDetails() + "\n";
+            }
+            if (data.isEmpty()) data = "No Books Found";
+
+            JOptionPane.showMessageDialog(frame, data);
+        });
+
+
+        issue.addActionListener(e -> {
+            String id = JOptionPane.showInputDialog("Enter ID:");
+            try {
+                library.issueBook(Integer.parseInt(id));
+                JOptionPane.showMessageDialog(frame, "Book Issued");
+            } catch (LibraryException ex) {
+                JOptionPane.showMessageDialog(frame, ex.getMessage());
+            }
+        });
+
+
+        ret.addActionListener(e -> {
+            String id = JOptionPane.showInputDialog("Enter ID:");
+            try {
+                library.returnBook(Integer.parseInt(id));
+                JOptionPane.showMessageDialog(frame, "Book Returned");
+            } catch (LibraryException ex) {
+                JOptionPane.showMessageDialog(frame, ex.getMessage());
+            }
+        });
+
+
+        remove.addActionListener(e -> {
+            String id = JOptionPane.showInputDialog("Enter ID:");
+            try {
+                library.removeBook(Integer.parseInt(id));
+                JOptionPane.showMessageDialog(frame, "Book Removed");
+            } catch (LibraryException ex) {
+                JOptionPane.showMessageDialog(frame, ex.getMessage());
+            }
+        });
+
+        frame.setVisible(true);
+    }
+
+    public static void main(String[] args) {
+        new MainGUI();
+    }
+}
