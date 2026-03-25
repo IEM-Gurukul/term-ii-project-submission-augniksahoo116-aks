@@ -57,4 +57,13 @@ among different components of the system.
 Run this project by first installing Java JDK (8 or above) and opening the project in any IDE like IntelliJ, Eclipse, or VS Code. Compile the source files and execute the main class (e.g., Main.java) either using the IDE’s run option or through the terminal using javac and java commands. Once executed, the GUI-based Library Management System will launch, allowing you to perform operations like adding, issuing, and returning books.
 
 ## Git Discipline Notes
-Minimum 10 meaningful commits required.
+1. Initial project setup with folder structure and README  
+2. Added Book class with basic attributes and methods  
+3. Implemented User class for library members  
+4. Created Library class to manage books and users  
+5. Added functionality to issue and return books  
+6. Implemented search feature for books  
+7. Designed basic GUI layout using Swing  
+8. Integrated backend logic with GUI actions  
+9. Fixed bugs and improved input validation  
+10. Final code cleanup and project documentation update  
