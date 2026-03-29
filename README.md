@@ -66,4 +66,4 @@ Run this project by first installing Java JDK (8 or above) and opening the proje
 7. Designed basic GUI layout using Swing  
 8. Integrated backend logic with GUI actions  
 9. Fixed bugs and improved input validation  
-10. Final code cleanup and project documentation update  
+10. Final code cleanup and project documentation update
